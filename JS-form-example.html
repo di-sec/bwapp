@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1894.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;html&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Form Validation&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script type="text/javascript"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>var divs = new Array();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>divs[0] = "errFirst";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>divs[1] = "errLast";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>divs[2] = "errEmail";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>divs[3] = "errUid";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>divs[4] = "errPassword";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>divs[5] = "errConfirm";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function validate()</p>
+<p class="p1"><span class="Apple-tab-span">	</span>{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>var inputs = new Array();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>inputs[0] = document.getElementById('first').value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>inputs[1] = document.getElementById('last').value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>inputs[2] = document.getElementById('email').value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>inputs[3] = document.getElementById('uid').value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>inputs[4] = document.getElementById('password').value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>inputs[5] = document.getElementById('confirm').value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>var errors = new Array();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>errors[0] = "&lt;span style='color:red'&gt;Please enter your first name!&lt;/span&gt;";</p>
+<p class="p1"><span class="Apple-converted-space">      </span>errors[1] = "&lt;span style='color:red'&gt;Please enter your last name!&lt;/span&gt;";</p>
+<p class="p1"><span class="Apple-converted-space">      </span>errors[2] = "&lt;span style='color:red'&gt;Please enter your email!&lt;/span&gt;";</p>
+<p class="p1"><span class="Apple-converted-space">      </span>errors[3] = "&lt;span style='color:red'&gt;Please enter your user id!&lt;/span&gt;";</p>
+<p class="p1"><span class="Apple-converted-space">      </span>errors[4] = "&lt;span style='color:red'&gt;Please enter your password!&lt;/span&gt;";</p>
+<p class="p1"><span class="Apple-converted-space">      </span>errors[5] = "&lt;span style='color:red'&gt;Please confirm your password!&lt;/span&gt;";</p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (i in inputs)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>var errMessage = errors[i];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>var div = divs[i];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (inputs[i] == "")</p>
+<p class="p1"><span class="Apple-converted-space">        <span class="Apple-tab-span">	</span></span>document.getElementById(div).innerHTML = errMessage;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>else if (i==2)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">          </span>var atpos=inputs[i].indexOf("@");</p>
+<p class="p1"><span class="Apple-converted-space">          </span>var dotpos=inputs[i].lastIndexOf(".");</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (atpos&lt;1 || dotpos&lt;atpos+2 || dotpos+2&gt;=inputs[i].length)</p>
+<p class="p1"><span class="Apple-converted-space">        <span class="Apple-tab-span">	</span></span>document.getElementById('errEmail').innerHTML = "&lt;span style='color: red'&gt;Enter a valid email address!&lt;/span&gt;";</p>
+<p class="p1"><span class="Apple-converted-space">          </span>else</p>
+<p class="p1"><span class="Apple-converted-space">        <span class="Apple-tab-span">	</span></span>document.getElementById(div).innerHTML = "OK!";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>else if (i==5)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">          </span>var first = document.getElementById('password').value;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>var second = document.getElementById('confirm').value;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (second != first)</p>
+<p class="p1"><span class="Apple-converted-space">        <span class="Apple-tab-span">	</span></span>document.getElementById('errConfirm').innerHTML = "&lt;span style='color: red'&gt;Your passwords don't match!&lt;/span&gt;";</p>
+<p class="p1"><span class="Apple-converted-space">          </span>else</p>
+<p class="p1"><span class="Apple-converted-space">       <span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>document.getElementById(div).innerHTML = "OK!";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>else</p>
+<p class="p1"><span class="Apple-converted-space">        <span class="Apple-tab-span">	</span></span>document.getElementById(div).innerHTML = "OK!";</p>
+<p class="p1"><span class="Apple-converted-space">       </span>}</p>
+<p class="p1"><span class="Apple-converted-space">     </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function finalValidate()</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">          </span>var count = 0;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>for(i=0;i&lt;6;i++)</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var div = divs[i];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if(document.getElementById(div).innerHTML == "OK!")</p>
+<p class="p1"><span class="Apple-converted-space">            </span>count = count + 1;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if(count == 6)</p>
+<p class="p1"><span class="Apple-converted-space">          <span class="Apple-tab-span">	</span></span>document.getElementById("errFinal").innerHTML = "All the data you entered is correct!!!";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">   </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-tab-span">	</span>&lt;table id="table1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;First Name:&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;input type="text" id="first" onkeyup="validate();" /&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;div id="errFirst"&gt;&lt;/div&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;Last Name:&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;input type="text" id="last" onkeyup="validate();"/&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;div id="errLast"&gt;&lt;/div&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;Email:&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;input type="text" id="email" onkeyup="validate();"/&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;div id="errEmail"&gt;&lt;/div&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;User Id:&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;input type="text" id="uid" onkeyup="validate();"/&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;div id="errUid"&gt;&lt;/div&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;Password:&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;input type="password" id="password" onkeyup="validate();"/&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;div id="errPassword"&gt;&lt;/div&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;Confirm Password:&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;input type="password" id="confirm" onkeyup="validate();"/&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;div id="errConfirm"&gt;&lt;/div&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;input type="button" id="create" value="Create" onclick="validate();finalValidate();"/&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;div id="errFinal"&gt;&lt;/div&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-tab-span">	</span>&lt;/table&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
